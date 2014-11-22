@@ -1,0 +1,40 @@
+mkdir repoA
+mkdir repoB
+cd repoA/
+git init
+nano fileA.txt
+nano fileB.txt
+git commit -a -m "First commit"
+git add fileA.txt 
+git add fileB.txt 
+git commit -a -m "First commit"
+git branch branch1
+cd ..
+git clone repoA/ repoB
+cd repoB/
+git checkout branch1
+nano fileC.txt
+git add fileC.txt
+git commit -m "Second commit"
+git push ../repoA
+cd ..
+cd repoA/
+git checkout branch1
+nano fileC.txt
+git commit -a -m "FileC modify"
+cd ..
+cd repoB/
+nano fileC.txt
+git commit -a -m "FileC modify"
+git fetch
+git merge
+git mergetool
+git commit -a -m "Merge"
+cd ..
+cd repoA/
+git remote add repoB ../repoB
+git fetch repoB
+git branch -u repoB/branch1
+git merge
+git status
+cat fileC.txt
